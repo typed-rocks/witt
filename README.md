@@ -25,16 +25,15 @@
 </div>
 
 
-## Usage Examples
+## Usage
+Simply add `// ^?` where the `^` has to point in the direction of a typescript type definition.
 
+### Example
 ![Info Screenshot](images/dark.png#gh-dark-mode-only)
 ![Info Screenshot](images/dark.png#gh-light-mode-only)
 
 ### Installation
 You can download it from the [Jetbrains Plugin Marketplace](https://example.com).
-
-## Usage
-Simply add `// ^?` where the `^` has to point in the direction of a typescript type definition.
 
 ## Roadmap
 
@@ -93,7 +92,7 @@ Project Link: [https://github.com/typed-rocks/witt](https://github.com/typed-roc
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://www.linkedin.com/in/christian-w%C3%B6rz-a1228380/
 
 [Intellij]: https://img.shields.io/badge/Intellij-Idea-000?style=for-the-badge&logo=intellij-idea&color=blue
 
