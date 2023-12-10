@@ -4,6 +4,7 @@ import com.intellij.codeInsight.hints.*
 import com.intellij.lang.javascript.psi.ecma6.TypeScriptTypeAlias
 import com.intellij.lang.typescript.compiler.TypeScriptService
 import com.intellij.lang.typescript.compiler.languageService.TypeScriptLanguageServiceUtil
+import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.Editor
@@ -22,7 +23,7 @@ private val log = Logger.getInstance(WittInlayHintsProvider::class.java)
 class WittInlayHintsProvider : InlayHintsProvider<NoSettings> {
 
 
-    override val key = SettingsKey<NoSettings>("")
+    override val key = SettingsKey<NoSettings>("typed.rocks.witt")
 
     override val name: String = "typed.rocks.witt"
 
@@ -33,7 +34,6 @@ class WittInlayHintsProvider : InlayHintsProvider<NoSettings> {
     override fun createConfigurable(settings: NoSettings): ImmediateConfigurable {
         return object : ImmediateConfigurable {
             override fun createComponent(listener: ChangeListener): JComponent = JPanel()
-
         }
     }
 
@@ -49,48 +49,10 @@ class WittInlayHintsProvider : InlayHintsProvider<NoSettings> {
         null
     }
 
-    class Collector(private val psiFile: PsiFile, editor: Editor) : FactoryInlayHintsCollector(editor) {
-        private val virtualFile = psiFile.virtualFile
-        private val tss = TypeScriptService.getForFile(psiFile.project, virtualFile)!!
-
-        override fun collect(element: PsiElement, editor: Editor, sink: InlayHintsSink): Boolean {
-
-            // we do the recursive call ourselves
-            if (element !is PsiFile) return false
-            val visitor = Visitor(psiFile, editor.document)
-            element.accept(visitor)
-            Thread.sleep(100)
-
-            visitor.result.forEach { (comment, possibleTypeAlias) -> addToSink(possibleTypeAlias, sink, comment) }
-            return false
-        }
-
-        private fun addToSink(
-            possibleTypeAlias: PsiElement,
-            sink: InlayHintsSink,
-            comment: PsiComment
-        ) {
-            val quickInfoResponseFuture = tss.getQuickInfoAt(possibleTypeAlias, virtualFile)
-            val quickinfoResponse = quickInfoResponseFuture?.get()
-            if (quickinfoResponse == null) {
-                log.debug("No Quickresponse found for the type '${possibleTypeAlias.text}'")
-            } else {
-                sink.addInlineElement(
-                    comment.endOffset,
-                    true,
-                    factory.roundWithBackground(factory.text(quickinfoResponse.displayString)),
-                    false
-                )
-            }
-        }
-
-
-    }
 }
 
 fun inlaysToAdd(psiFile: PsiFile, element: PsiComment, document: Document): Pair<PsiComment, PsiElement>? {
-    val commentText = element.text
-    if (!commentText.trim().endsWith(TYPE_POINTER_STRING)) return null
+    if (!element.text.trim().endsWith(TYPE_POINTER_STRING)) return null
 
     val commentLineIndex = document.getLineNumber(element.startOffsetInParent)
 
@@ -115,4 +77,45 @@ class Visitor(private val psiFile: PsiFile, private val document: Document) : Ps
     override fun visitComment(comment: PsiComment) {
         inlaysToAdd(psiFile, comment, document)?.let(result::add)
     }
+}
+
+class Collector(private val psiFile: PsiFile, editor: Editor) : FactoryInlayHintsCollector(editor) {
+
+    private val virtualFile = psiFile.virtualFile
+    private val tss = TypeScriptService.getForFile(psiFile.project, virtualFile)!!
+    private var first = true
+
+    override fun collect(element: PsiElement, editor: Editor, sink: InlayHintsSink): Boolean {
+
+        // we do the recursive call ourselves
+        if (!first) return false
+        first = false
+        val visitor = Visitor(psiFile, editor.document)
+        psiFile.accept(visitor)
+        return ReadAction.compute<Boolean, Throwable> {
+            Thread.sleep(10)
+            visitor.result.forEach { (comment, possibleTypeAlias) -> addToSink(possibleTypeAlias, sink, comment) }
+            false
+        }
+    }
+
+    private fun addToSink(
+        possibleTypeAlias: PsiElement,
+        sink: InlayHintsSink,
+        comment: PsiComment
+    ): Boolean {
+        val quickinfoResponse = tss.callTsService(possibleTypeAlias, virtualFile)
+        if (quickinfoResponse == null) {
+            log.debug("No Quickresponse found for the type '${possibleTypeAlias.text}'")
+            return false
+        }
+        sink.addInlineElement(
+            comment.endOffset,
+            true,
+            factory.roundWithBackground(factory.text(quickinfoResponse.displayString)),
+            false
+        )
+        return true
+    }
+
 }

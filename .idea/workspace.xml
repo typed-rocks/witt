@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="">
+    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="new icon">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/CustomCommentAnnotator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/pluginIcon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/pluginIcon.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,57 +106,11 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle buildPlugin --no-build-cache" />
+      <command value="gradle clean" />
+      <command value="gradle clean runIde" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.inlayhinting [buildPlugin]">
-    <configuration name="MyInlayHintsCollectorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;MyInlayHintsCollectorTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="MyInlayHintsCollectorTest.testInlayHintsCollector" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;MyInlayHintsCollectorTest.testInlayHintsCollector&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.Run Plugin">
     <configuration name="inlayhinting [buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -167,6 +123,51 @@
         <option name="taskNames">
           <list>
             <option value="buildPlugin" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="inlayhinting [clean runIde]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="runIde" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="inlayhinting [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -209,34 +210,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="witt" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="witt" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Gradle.Run Plugin" />
+      <item itemvalue="Gradle.inlayhinting [clean runIde]" />
+      <item itemvalue="Gradle.inlayhinting [clean]" />
       <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
       <item itemvalue="Gradle.inlayhinting [jar]" />
-      <item itemvalue="Gradle.MyInlayHintsCollectorTest" />
-      <item itemvalue="Gradle.MyInlayHintsCollectorTest.testInlayHintsCollector" />
       <item itemvalue="JUnit.MyInlayHintsCollectorTest.testInlayHintsCollector" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
+        <item itemvalue="Gradle.inlayhinting [clean runIde]" />
+        <item itemvalue="Gradle.inlayhinting [clean]" />
         <item itemvalue="JUnit.MyInlayHintsCollectorTest.testInlayHintsCollector" />
         <item itemvalue="Gradle.inlayhinting [jar]" />
-        <item itemvalue="Gradle.MyInlayHintsCollectorTest.testInlayHintsCollector" />
-        <item itemvalue="Gradle.MyInlayHintsCollectorTest" />
+        <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
       </list>
     </recent_temporary>
   </component>
@@ -257,11 +245,25 @@
       <workItem from="1701706795894" duration="473000" />
       <workItem from="1701707280514" duration="4358000" />
       <workItem from="1701722425163" duration="3919000" />
+      <workItem from="1702221594434" duration="5122000" />
     </task>
+    <task id="LOCAL-00001" summary="new icon">
+      <option name="closed" value="true" />
+      <created>1702202947216</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702202947216</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="new icon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
