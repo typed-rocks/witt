@@ -1,14 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>ch.woerz.inlayhinting</id>
+    <id>typed.rocks.witt</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Inlayhinting</name>
+    <name>WiTT - Typescript Type Hints Like In TS-Playground</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="me@typed.rocks" url="https://typed.rocks">Typed Rocks</vendor>
+
+    <description><![CDATA[A simple plugin to use the <code>// ^?</code> annotation like in the
+        <a href="https://www.typescriptlang.org/play?#code/FAFwngDgpgBAElANog9jAvDAdgVwLYBGUATgNzCiSwLIoBSUIBxAhgJZYDOG8SqMAHxicQxDgHNyAeikw5MAHoB+YEA">
+            TypeScript playground
+        </a>]]>
+    </description>
 
 
     <!-- Product and plugin compatibility requirements.
@@ -17,13 +23,10 @@
     <depends>com.intellij.modules.ultimate</depends>
     <depends>JavaScript</depends>
 
-    <resource-bundle>default</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <codeInsight.declarativeInlayProvider bundle="default" group="CODE_VISION_GROUP"
-                                              implementationClass="ch.woerz.inlayhinting.MyInlayHintsProvider"
-                                              isEnabledByDefault="true"
-                                              language="TypeScript" nameKey="name" providerId="ch.woerz"/>
+        <codeInsight.inlayProvider
+                implementationClass="typed.rocks.witt.WittInlayHintsProvider"
+                language="TypeScript"/>
     </extensions>
 
 
