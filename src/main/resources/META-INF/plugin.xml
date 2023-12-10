@@ -5,14 +5,15 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>WiTT - Typescript Type Hints Like In TS-Playground</name>
+    <name>WiTT - Typescript Type Hints Like In The TS-Playground</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="me@typed.rocks" url="https://typed.rocks">Typed Rocks</vendor>
 
-    <description><![CDATA[A simple plugin to use the <code>// ^?</code> annotation like in the
+    <description><![CDATA[
+    A simple plugin to use the <code>// ^?</code> annotation like in the
         <a href="https://www.typescriptlang.org/play?#code/FAFwngDgpgBAElANog9jAvDAdgVwLYBGUATgNzCiSwLIoBSUIBxAhgJZYDOG8SqMAHxicQxDgHNyAeikw5MAHoB+YEA">
-            TypeScript playground
+            TypeScript Playground
         </a>]]>
     </description>
 

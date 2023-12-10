@@ -16,7 +16,9 @@
   </a>
 
 <h3 align="center">Use `// ^?` in Jetbrains IDEs like in the TS Playground</h3>
-
+<a href="https://plugins.jetbrains.com/embeddable/install/23294">
+<img width=300 src="images/marketplace-link.png">
+</a>
   <p align="center">
     <a href="https://github.com/typed-rocks/witt/issues">Report Bug</a>
     ·
@@ -30,7 +32,7 @@ Simply add `// ^?` where the `^` has to point in the direction of a typescript t
 
 ### Example
 ![Info Screenshot](images/dark.png#gh-dark-mode-only)
-![Info Screenshot](images/dark.png#gh-light-mode-only)
+![Info Screenshot](images/light.png#gh-light-mode-only)
 
 ### Installation
 You can download it from the [Jetbrains Plugin Marketplace](https://example.com).
