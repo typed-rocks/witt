@@ -25,7 +25,6 @@
     <depends>JavaScript</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <annotator language="TypeScript" implementationClass="typed.rocks.witt.CustomCommentAnnotator"/>
         <codeInsight.inlayProvider
                 implementationClass="typed.rocks.witt.WittInlayHintsProvider"
                 language="TypeScript"/>

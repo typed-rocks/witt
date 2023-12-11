@@ -94,7 +94,9 @@ class Collector(private val psiFile: PsiFile, editor: Editor) : FactoryInlayHint
         psiFile.accept(visitor)
         return ReadAction.compute<Boolean, Throwable> {
             Thread.sleep(10)
-            visitor.result.forEach { (comment, possibleTypeAlias) -> addToSink(possibleTypeAlias, sink, comment) }
+            visitor.result.forEach { (comment, possibleTypeAlias) ->
+                editor.addHighlight(comment)
+                addToSink(possibleTypeAlias, sink, comment) }
             false
         }
     }
