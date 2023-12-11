@@ -16,7 +16,7 @@
   </a>
 
 <h3 align="center">Use `// ^?` in Jetbrains IDEs like in the TS Playground</h3>
-<a href="https://plugins.jetbrains.com/embeddable/install/23294">
+<a href="https://plugins.jetbrains.com/plugin/23294">
 <img width=300 src="images/marketplace-link.png">
 </a>
   <p align="center">
