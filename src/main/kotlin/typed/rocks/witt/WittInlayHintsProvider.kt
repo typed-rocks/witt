@@ -79,7 +79,7 @@ class Visitor(private val psiFile: PsiFile, private val document: Document) : Ps
     }
 }
 
-class Collector(private val psiFile: PsiFile, editor: Editor) : FactoryInlayHintsCollector(editor) {
+class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlayHintsCollector(editor) {
 
     private val virtualFile = psiFile.virtualFile
     private val tss = TypeScriptService.getForFile(psiFile.project, virtualFile)!!
@@ -96,7 +96,8 @@ class Collector(private val psiFile: PsiFile, editor: Editor) : FactoryInlayHint
             Thread.sleep(10)
             visitor.result.forEach { (comment, possibleTypeAlias) ->
                 editor.addHighlight(comment)
-                addToSink(possibleTypeAlias, sink, comment) }
+                addToSink(possibleTypeAlias, sink, comment)
+            }
             false
         }
     }
@@ -111,10 +112,12 @@ class Collector(private val psiFile: PsiFile, editor: Editor) : FactoryInlayHint
             log.debug("No Quickresponse found for the type '${possibleTypeAlias.text}'")
             return false
         }
+        val editorWidth = editor.getCharacterMax()
+        val trimmed = quickinfoResponse.displayString.trimmedText(editorWidth)
         sink.addInlineElement(
             comment.endOffset,
             true,
-            factory.roundWithBackground(factory.text(quickinfoResponse.displayString)),
+            factory.roundWithBackground(factory.text(trimmed)),
             false
         )
         return true
