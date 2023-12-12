@@ -1,6 +1,7 @@
 package typed.rocks.witt
 
 import com.intellij.lang.javascript.TypeScriptFileType
+import com.intellij.lang.javascript.TypeScriptJSXFileType
 import com.intellij.lang.typescript.compiler.TypeScriptService
 import com.intellij.lang.typescript.compiler.languageService.protocol.commands.response.TypeScriptQuickInfoResponse
 import com.intellij.openapi.editor.Document
@@ -19,16 +20,18 @@ import com.intellij.ui.JBColor
 import java.awt.Color
 import java.awt.Font
 import java.awt.FontMetrics
+import java.util.concurrent.TimeUnit
 
 
-fun PsiFile.isTsFile() = this.fileType is TypeScriptFileType
+fun PsiFile.isTsFile() = this.fileType is TypeScriptFileType || this.fileType is TypeScriptJSXFileType
 
 const val TYPE_POINTER_STRING = "^?"
 
 val COMMENT_ATTRIBUTE = TextAttributes()
     .also {
         it.fontType = Font.BOLD
-        it.foregroundColor = JBColor(Color(35, 90, 151), Color(49, 120, 198)) }
+        it.foregroundColor = JBColor(Color(35, 90, 151), Color(49, 120, 198))
+    }
 
 
 fun PsiElement.getTypeAboveComment(
@@ -82,9 +85,20 @@ fun Editor.getCharacterMax(): Int {
 
 fun String.trimmedText(maxCharacters: Int): String {
     val singleSpaces = this.replace(" {2,}".toRegex(), "  ")
-    return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(0, maxCharacters - 3) + "..."
+    return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(
+        0,
+        maxCharacters - 3
+    ) + "..."
 
 }
 
- fun TypeScriptService.callTsService(possibleTypeAlias: PsiElement, virtualFile: VirtualFile): TypeScriptQuickInfoResponse? =
-    this.getQuickInfoAt(possibleTypeAlias, virtualFile)?.get()
+fun TypeScriptService.callTsService(
+    possibleTypeAlias: PsiElement,
+    virtualFile: VirtualFile
+): TypeScriptQuickInfoResponse? {
+    return try {
+        this.getQuickInfoAt(possibleTypeAlias, virtualFile)?.get(500, TimeUnit.MILLISECONDS)
+    } catch (e: Exception) {
+        return null
+    }
+}
