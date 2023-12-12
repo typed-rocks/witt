@@ -85,11 +85,7 @@ fun Editor.getCharacterMax(): Int {
 
 fun String.trimmedText(maxCharacters: Int): String {
     val singleSpaces = this.replace(" {2,}".toRegex(), "  ")
-    return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(
-        0,
-        maxCharacters - 3
-    ) + "..."
-
+    return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(0, maxCharacters - 3) + "..."
 }
 
 fun TypeScriptService.callTsService(

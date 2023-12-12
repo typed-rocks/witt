@@ -1,6 +1,7 @@
 package typed.rocks.witt
 
 import com.intellij.codeInsight.hints.*
+import com.intellij.codeInsight.hints.presentation.InlayPresentation
 import com.intellij.lang.javascript.psi.ecma6.TypeScriptTypeAlias
 import com.intellij.lang.typescript.compiler.TypeScriptService
 import com.intellij.lang.typescript.compiler.languageService.TypeScriptLanguageServiceUtil
@@ -8,6 +9,7 @@ import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.Editor
+import com.intellij.pom.Navigatable
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
@@ -74,8 +76,15 @@ fun inlaysToAdd(psiFile: PsiFile, element: PsiComment, document: Document): Pair
 
 class Visitor(private val psiFile: PsiFile, private val document: Document) : PsiRecursiveElementVisitor() {
     val result: MutableSet<Pair<PsiComment, PsiElement>> = mutableSetOf()
+    val types: MutableMap<String, TypeScriptTypeAlias> = mutableMapOf()
     override fun visitComment(comment: PsiComment) {
         inlaysToAdd(psiFile, comment, document)?.let(result::add)
+    }
+
+    override fun visitElement(element: PsiElement) {
+        if (element is TypeScriptTypeAlias && element.name != null) {
+            types[element.name!!] = element
+        }
     }
 }
 
@@ -91,12 +100,12 @@ class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlay
         if (!first) return false
         first = false
         val visitor = Visitor(psiFile, editor.document)
-        psiFile.accept(visitor)
+        psiFile.acceptChildren(visitor)
         return ReadAction.compute<Boolean, Throwable> {
             Thread.sleep(10)
             visitor.result.forEach { (comment, possibleTypeAlias) ->
                 editor.addHighlight(comment)
-                addToSink(possibleTypeAlias, sink, comment)
+                addToSink(possibleTypeAlias, sink, comment, visitor.types)
             }
             false
         }
@@ -105,7 +114,8 @@ class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlay
     private fun addToSink(
         possibleTypeAlias: PsiElement,
         sink: InlayHintsSink,
-        comment: PsiComment
+        comment: PsiComment,
+        typeMap: Map<String, TypeScriptTypeAlias>
     ): Boolean {
         val quickinfoResponse = tss.callTsService(possibleTypeAlias, virtualFile)
         if (quickinfoResponse == null) {
@@ -113,14 +123,47 @@ class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlay
             return false
         }
         val editorWidth = editor.getCharacterMax()
+
         val trimmed = quickinfoResponse.displayString.trimmedText(editorWidth)
+
+        val foundAType = typeMap.keys.any { trimmed.contains(it) }
+        val mapped = if (foundAType) trimmed.splitTsType().map { typeText(it, typeMap) }.toTypedArray() else arrayOf(
+            factory.text(trimmed)
+        )
+
+        val result = factory.seq(*mapped)
+
+
         sink.addInlineElement(
             comment.endOffset,
             true,
-            factory.roundWithBackground(factory.text(trimmed)),
+            factory.roundWithBackground(result),
             false
         )
         return true
     }
 
+    private fun typeText(currentNonLimiter: String, typeMapping: Map<String, TypeScriptTypeAlias>): InlayPresentation {
+        val navigationElement = typeMapping[currentNonLimiter]?.navigationElement
+        return if (navigationElement != null && navigationElement is Navigatable && navigationElement.canNavigate()) {
+            factory.referenceOnHover(factory.text(currentNonLimiter)) { _, _ ->
+                navigationElement.navigate(true)
+            }
+        } else {
+            factory.text(currentNonLimiter)
+        }
+    }
+
+
 }
+
+fun String.splitTsType(): List<String> {
+    // Regular expression pattern to match TypeScript type keywords and symbols
+    val regex = Regex("(\\[|]|;|:|\\||\\?|\\?:|\\{|}|&| |=|(\\w+))")
+    // Splitting the string
+    return regex.findAll(this)
+        .map { it.value }
+        .toList()
+
+}
+
