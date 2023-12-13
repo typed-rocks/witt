@@ -12,7 +12,7 @@
 
     <description><![CDATA[
     A simple plugin to use the <code>// ^?</code> annotation like in the
-        <a href="https://www.typescriptlang.org/play?#code/FAFwngDgpgBAElANog9jAvDAdgVwLYBGUATgNzCiSwLIoBSUIBxAhgJZYDOG8SqMAHxicQxDgHNyAeikw5MAHoB+YEA">
+        <a href="https://www.typescriptlang.org/play?#code/FAFwngDgpgBAElANog9jAvDAdgVwLYBGUATgNzCiSwLIoBSUIBxAhgJZYDOG8SqMAHxicQxDgHNyAeikw5MAHoB+CgGMUXEDABmOLDwAUASgwA+GAHI4bC9NnzlajSJgQWrPIYIAuXrRPo5lY2dvJh4YoqFEA">
             TypeScript Playground
         </a>]]>
     </description>

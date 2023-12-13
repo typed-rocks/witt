@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="added navigation">
+    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="added much more type infos">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/tet.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/dark.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/dark.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/light.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +82,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/util-8.jar!/com/intellij/psi/PsiElementVisitor.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/util-8.jar!/kotlin/text/CharsKt.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/plugins/javascript-impl/lib/javascript-impl.jar!/com/intellij/lang/typescript/compiler/TypeScriptService.class" root0="SKIP_INSPECTION" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -121,8 +128,8 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "settings.editor.selected.configurable": "code-screenshots",
+    "ts.external.directory.path": "/Users/wrz/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -138,7 +145,7 @@
       <command value="gradle clean runIde" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.Run Plugin">
+  <component name="RunManager" selected="Gradle.inlayhinting [buildPlugin]">
     <configuration name="inlayhinting [buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -248,13 +255,20 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
-        <item itemvalue="Gradle.inlayhinting [clean runIde]" />
-        <item itemvalue="Gradle.inlayhinting [clean]" />
         <item itemvalue="JUnit.MyInlayHintsCollectorTest.testInlayHintsCollector" />
         <item itemvalue="Gradle.inlayhinting [jar]" />
+        <item itemvalue="Gradle.inlayhinting [clean]" />
+        <item itemvalue="Gradle.inlayhinting [clean runIde]" />
+        <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-temurin-17.0.9-3183f394aec4-9e320d02" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -307,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702417508966</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added much more type infos">
+      <option name="closed" value="true" />
+      <created>1702504652919</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702504652919</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +351,8 @@
     <MESSAGE value="new version support" />
     <MESSAGE value="added timeout for quickinfoat and tsx" />
     <MESSAGE value="added navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added navigation" />
+    <MESSAGE value="added much more type infos" />
+    <option name="LAST_COMMIT_MESSAGE" value="added much more type infos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

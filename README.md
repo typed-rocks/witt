@@ -31,8 +31,8 @@
 Simply add `// ^?` where the `^` has to point in the direction of a typescript type definition.
 
 ### Example
-![Info Screenshot](images/dark.png#gh-dark-mode-only)
-![Info Screenshot](images/light.png#gh-light-mode-only)
+<img src="images/dark.png" height="400" id="gh-dark-mode-only" />
+<img src="images/light.png" height="400" id="gh-light-mode-only" />
 
 ### Installation
 You can download it from the [Jetbrains Plugin Marketplace](https://example.com).
