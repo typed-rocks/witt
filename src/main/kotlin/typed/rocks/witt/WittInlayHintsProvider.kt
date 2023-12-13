@@ -53,10 +53,10 @@ class WittInlayHintsProvider : InlayHintsProvider<NoSettings> {
 
 }
 
-fun inlaysToAdd(psiFile: PsiFile, element: PsiComment, document: Document): Pair<PsiComment, PsiElement>? {
-    if (!element.text.trim().endsWith(TYPE_POINTER_STRING)) return null
+fun inlaysToAdd(psiFile: PsiFile, comment: PsiComment, document: Document): Pair<PsiComment, PsiElement>? {
+    if (!comment.text.trim().endsWith(TYPE_POINTER_STRING)) return null
 
-    val commentLineIndex = document.getLineNumber(element.startOffsetInParent)
+    val commentLineIndex = document.getLineNumber(comment.startOffsetInParent)
 
     if (commentLineIndex < 1) {
         log.debug("Comment found at line $commentLineIndex but there is no line above. So skipping further checking")
@@ -64,21 +64,15 @@ fun inlaysToAdd(psiFile: PsiFile, element: PsiComment, document: Document): Pair
     }
 
     // if a comment does not start at index 0 of the line, we need to add the index before
-    val typeElement = psiFile.getTypeAboveComment(document, element, commentLineIndex)
-
-    val possibleTypeAlias = typeElement?.parent
-    if (possibleTypeAlias !is TypeScriptTypeAlias) {
-        log.debug("The found parent is no no TypescriptTypeAlias. So skipping the checking.", possibleTypeAlias)
-        return null
-    }
-    return element to possibleTypeAlias
+    val typeElement = psiFile.getTypeAboveComment(document, comment, commentLineIndex)
+    return if (typeElement == null) null else comment to typeElement
 }
 
 class Visitor(private val psiFile: PsiFile, private val document: Document) : PsiRecursiveElementVisitor() {
     val result: MutableSet<Pair<PsiComment, PsiElement>> = mutableSetOf()
     val types: MutableMap<String, TypeScriptTypeAlias> = mutableMapOf()
     override fun visitComment(comment: PsiComment) {
-        inlaysToAdd(psiFile, comment, document)?.let(result::add)
+        inlaysToAdd(psiFile, comment, document)?.run(result::add)
     }
 
     override fun visitElement(element: PsiElement) {
@@ -88,7 +82,9 @@ class Visitor(private val psiFile: PsiFile, private val document: Document) : Ps
     }
 }
 
-class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlayHintsCollector(editor) {
+
+@Suppress("UnstableApiUsage")
+class Collector(private val psiFile: PsiFile, private val editor: Editor) : FactoryInlayHintsCollector(editor) {
 
     private val virtualFile = psiFile.virtualFile
     private val tss = TypeScriptService.getForFile(psiFile.project, virtualFile)!!
@@ -117,23 +113,17 @@ class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlay
         comment: PsiComment,
         typeMap: Map<String, TypeScriptTypeAlias>
     ): Boolean {
-        val quickinfoResponse = tss.callTsService(possibleTypeAlias, virtualFile)
+        val quickinfoResponse = tss.callTsService(possibleTypeAlias, virtualFile)?.displayString
         if (quickinfoResponse == null) {
             log.debug("No Quickresponse found for the type '${possibleTypeAlias.text}'")
             return false
         }
         val editorWidth = editor.getCharacterMax()
-
-        val trimmed = quickinfoResponse.displayString.trimmedText(editorWidth)
+        val trimmed = quickinfoResponse.trimmedText(editorWidth)
 
         val foundAType = typeMap.keys.any { trimmed.contains(it) }
-        val mapped = if (foundAType) trimmed.splitTsType().map { typeText(it, typeMap) }.toTypedArray() else arrayOf(
-            factory.text(trimmed)
-        )
-
+        val mapped = if (foundAType) trimmed.createRefs(typeMap) else arrayOf(trimmed.inlayText)
         val result = factory.seq(*mapped)
-
-
         sink.addInlineElement(
             comment.endOffset,
             true,
@@ -143,27 +133,43 @@ class Collector(private val psiFile: PsiFile, val editor: Editor) : FactoryInlay
         return true
     }
 
-    private fun typeText(currentNonLimiter: String, typeMapping: Map<String, TypeScriptTypeAlias>): InlayPresentation {
-        val navigationElement = typeMapping[currentNonLimiter]?.navigationElement
-        return if (navigationElement != null && navigationElement is Navigatable && navigationElement.canNavigate()) {
-            factory.referenceOnHover(factory.text(currentNonLimiter)) { _, _ ->
-                navigationElement.navigate(true)
-            }
-        } else {
-            factory.text(currentNonLimiter)
-        }
+    private val String.inlayText: InlayPresentation
+        get() = factory.text(this)
+
+    private val ends = listOf(";", ")")
+    private fun String.createRefs(typeMap: Map<String, TypeScriptTypeAlias>) =
+        this.split(" ").map {
+            val trimmed = it.trim()
+            val end = trimmed.lastOrNull()?.toString() ?: ""
+            val firstIsChar = trimmed.firstOrNull()?.isLetter() ?: false
+            if (!firstIsChar) factory.seq(" ".inlayText, it.inlayText) else toRefSequence(end, trimmed, typeMap)
+        }.toTypedArray()
+
+    private fun toRefSequence(
+        end: String,
+        trimmed: String,
+        typeMap: Map<String, TypeScriptTypeAlias>
+    ): InlayPresentation {
+        val closing = ends.find { e -> e == end } ?: ""
+        val removed = trimmed.removeSuffix(closing)
+        val ref = typeText(removed, typeMap)
+        val normalSeq = factory.seq(" ".inlayText, ref)
+        return factory.seq(normalSeq, closing.inlayText)
     }
 
 
-}
+    private fun typeText(currentNonLimiter: String, typeMapping: Map<String, TypeScriptTypeAlias>): InlayPresentation {
+        val navigationElement = typeMapping[currentNonLimiter]?.navigationElement
+        val inlayText = currentNonLimiter.inlayText
+        return if (navigationElement != null && navigationElement is Navigatable && navigationElement.canNavigate()) {
+            factory.referenceOnHover(inlayText) { _, _ ->
+                navigationElement.navigate(true)
+            }
+        } else {
+            inlayText
+        }
+    }
 
-fun String.splitTsType(): List<String> {
-    // Regular expression pattern to match TypeScript type keywords and symbols
-    val regex = Regex("(\\[|]|;|:|\\||\\?|\\?:|\\{|}|&| |=|(\\w+))")
-    // Splitting the string
-    return regex.findAll(this)
-        .map { it.value }
-        .toList()
 
 }
 

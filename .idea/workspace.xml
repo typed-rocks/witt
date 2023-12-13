@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="added timeout for quickinfoat and tsx">
+    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="added navigation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -297,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702416951331</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added navigation">
+      <option name="closed" value="true" />
+      <created>1702417508966</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702417508966</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,7 +328,8 @@
     <MESSAGE value="new icon" />
     <MESSAGE value="new version support" />
     <MESSAGE value="added timeout for quickinfoat and tsx" />
-    <option name="LAST_COMMIT_MESSAGE" value="added timeout for quickinfoat and tsx" />
+    <MESSAGE value="added navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="added navigation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

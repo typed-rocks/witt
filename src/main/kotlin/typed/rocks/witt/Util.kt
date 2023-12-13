@@ -6,7 +6,6 @@ import com.intellij.lang.typescript.compiler.TypeScriptService
 import com.intellij.lang.typescript.compiler.languageService.protocol.commands.response.TypeScriptQuickInfoResponse
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.editor.colors.EditorColorsScheme
 import com.intellij.openapi.editor.colors.EditorFontType
 import com.intellij.openapi.editor.markup.HighlighterLayer
 import com.intellij.openapi.editor.markup.HighlighterTargetArea
@@ -19,7 +18,6 @@ import com.intellij.refactoring.suggested.endOffset
 import com.intellij.ui.JBColor
 import java.awt.Color
 import java.awt.Font
-import java.awt.FontMetrics
 import java.util.concurrent.TimeUnit
 
 
@@ -61,31 +59,24 @@ fun Editor.addHighlight(comment: PsiComment) {
 }
 
 fun Editor.getCharacterMax(): Int {
-    val colorsScheme: EditorColorsScheme = this.colorsScheme
     val font = colorsScheme.getFont(EditorFontType.PLAIN)
-
-
     // Get font metrics
-    val fontMetrics: FontMetrics = this.component.getFontMetrics(font)
-
-
+    val fontMetrics = component.getFontMetrics(font)
     // Measure the width of a typical character (e.g., 'm')
-    val charWidth: Int = fontMetrics.charWidth('m')
-
-
+    val charWidth = fontMetrics.charWidth('m')
     // Get the component width
-    val editorWidth: Int = this.component.width
-
-
+    val editorWidth = component.width
     // Calculate how many characters fit in a line
-    val charsPerLine = editorWidth / charWidth
-
-    return charsPerLine
+    return editorWidth / charWidth
 }
 
 fun String.trimmedText(maxCharacters: Int): String {
     val singleSpaces = this.replace(" {2,}".toRegex(), "  ")
-    return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(0, maxCharacters - 3) + "..."
+    return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(
+        0,
+        maxCharacters - 3
+    ) + "..."
+
 }
 
 fun TypeScriptService.callTsService(
