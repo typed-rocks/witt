@@ -2,13 +2,13 @@ import com.intellij.lang.typescript.compiler.languageService.TypeScriptLanguageS
 import com.intellij.testFramework.fixtures.IdeaTestFixtureFactory
 import com.intellij.testFramework.fixtures.impl.TempDirTestFixtureImpl
 import typed.rocks.witt.WittInlayHintsProvider
-import typed.rocks.witt.isTest
+import typed.rocks.witt.UNDER_TEST
 import java.io.File
 
 class WittTest : MyInlayHintsProviderTestCase() {
 
     override fun setUp() {
-        isTest = true
+        UNDER_TEST = true
         val factory = IdeaTestFixtureFactory.getFixtureFactory()
         val fixtureBuilder = factory.createLightFixtureBuilder(this.projectDescriptor, this.getTestName(false))
         this.myFixture = IdeaTestFixtureFactory.getFixtureFactory()

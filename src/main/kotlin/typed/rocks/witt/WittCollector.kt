@@ -14,12 +14,14 @@ import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.refactoring.suggested.endOffset
-import java.time.Duration
-import java.time.LocalDateTime
 import java.util.concurrent.CompletableFuture
 
 @Suppress("UnstableApiUsage")
-class WittCollector(private val psiFile: PsiFile, private val editor: Editor, val rangeHighlighter: MutableList<RangeHighlighter>) : FactoryInlayHintsCollector(editor) {
+class WittCollector(
+    private val psiFile: PsiFile,
+    private val editor: Editor,
+    val rangeHighlighter: MutableList<RangeHighlighter>
+) : FactoryInlayHintsCollector(editor) {
 
     private val virtualFile = psiFile.virtualFile
     private val document = editor.document
@@ -35,10 +37,8 @@ class WittCollector(private val psiFile: PsiFile, private val editor: Editor, va
         if (!first) return false
         first = false
 
-        val start = LocalDateTime.now()
         val result = retryOn({ collectInlays() }, { it.commentToType.all { el -> el.second == null } })
         addInfoToSink(result, editor, sink)
-        println(Duration.between(start, LocalDateTime.now()).toMillis())
         return false
     }
 
@@ -63,11 +63,9 @@ class WittCollector(private val psiFile: PsiFile, private val editor: Editor, va
                 val err = result.errorList?.findErrorAboveComment(editor, comment)
                 val errDescription = err?.description?.trimmedText(editor.getCharacterMax())
                 val firstFound = errDescription ?: response
-                if (firstFound != null) {
+                firstFound?.let {
                     sink.addTypeComment(firstFound, comment, result.types)
                     alreadyDone.add(comment)
-                }
-                if (alreadyDone.contains(comment)) {
                     rangeHighlighter.add(editor.addHighlight(comment))
                 }
             }
@@ -151,4 +149,5 @@ class WittCollector(private val psiFile: PsiFile, private val editor: Editor, va
     }
 }
 
+@Suppress("UnstableApiUsage")
 fun PresentationFactory.list(presentations: List<InlayPresentation>) = this.seq(*presentations.toTypedArray())

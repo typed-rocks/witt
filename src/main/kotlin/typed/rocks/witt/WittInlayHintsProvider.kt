@@ -2,8 +2,6 @@ package typed.rocks.witt
 
 import com.intellij.codeInsight.hints.*
 import com.intellij.lang.javascript.psi.ecma6.TypeScriptTypeAlias
-import com.intellij.lang.typescript.compiler.languageService.TypeScriptLanguageServiceUtil
-import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.markup.RangeHighlighter
@@ -19,7 +17,7 @@ typealias TypeNameToAlias = Map<String, TypeScriptTypeAlias>
 typealias CommentToElement = Pair<PsiComment, PsiElement>
 
 @Suppress("UnstableApiUsage")
-class WittInlayHintsProvider() : InlayHintsProvider<NoSettings> {
+class WittInlayHintsProvider : InlayHintsProvider<NoSettings> {
 
     override val key = SettingsKey<NoSettings>("typed.rocks.witt")
 
@@ -27,7 +25,7 @@ class WittInlayHintsProvider() : InlayHintsProvider<NoSettings> {
 
     override val previewText: String = "WîTT"
 
-    var rangeHighlighter = mutableListOf<RangeHighlighter>()
+    private var rangeHighlighter = mutableListOf<RangeHighlighter>()
 
     override fun createSettings(): NoSettings = NoSettings()
 
