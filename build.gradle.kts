@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "typed.rocks"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
     mavenCentral()
@@ -17,6 +17,7 @@ repositories {
 intellij {
     version.set("2023.3")
     type.set("IU") // Target IDE Platform
+    downloadSources = true
 
     plugins.set(listOf("com.intellij.java", "JavaScript"))
 }
@@ -45,4 +46,7 @@ tasks {
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
+}
+dependencies {
+    testImplementation(kotlin("script-runtime"))
 }

@@ -27,7 +27,18 @@
         <codeInsight.inlayProvider
                 implementationClass="typed.rocks.witt.WittInlayHintsProvider"
                 language="TypeScript"/>
+
     </extensions>
+
+    <change-notes>
+        <![CDATA[
+        <p>1.0.3</p>
+        <ul>
+            <li>Fix issue #2 invalid revision range</li>
+            <li>Fix issue #5 show error/info notifications</li>
+        </ul>
+    ]]>
+    </change-notes>
 
 
 </idea-plugin>
