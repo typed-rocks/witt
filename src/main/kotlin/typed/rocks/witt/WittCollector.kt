@@ -1,5 +1,8 @@
 package typed.rocks.witt
 
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.intellij.codeInsight.hints.FactoryInlayHintsCollector
 import com.intellij.codeInsight.hints.InlayHintsSink
 import com.intellij.codeInsight.hints.presentation.InlayPresentation
@@ -15,6 +18,8 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.refactoring.suggested.endOffset
 import java.util.concurrent.CompletableFuture
+
+data class Inserter(val called: String, val start: Int, val end: Int)
 
 @Suppress("UnstableApiUsage")
 class WittCollector(

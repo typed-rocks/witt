@@ -8,24 +8,25 @@ import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementVisitor
+import com.intellij.refactoring.suggested.startOffset
 
 class WittVisitor(private val psiFile: PsiFile, private val document: Document) : PsiRecursiveElementVisitor() {
     val result: MutableSet<Pair<PsiComment, PsiElement>> = mutableSetOf()
     val types: MutableMap<String, TypeScriptTypeAlias> = mutableMapOf()
-    override fun visitComment(comment: PsiComment) {
-        collectCommentToPsiElement(comment)?.run(result::add)
-    }
-
     override fun visitElement(element: PsiElement) {
+        if(element is PsiComment) {
+            collectCommentToPsiElement(element)?.run(result::add)
+        }
         if (element is TypeScriptTypeAlias) {
             element.name?.let { types[it] = element }
         }
+        element.acceptChildren(this)
     }
 
     private fun collectCommentToPsiElement(comment: PsiComment): CommentToElement? {
         if (!comment.text.trim().endsWith(TYPE_POINTER_STRING)) return null
 
-        val commentLineIndex = document.getLineNumber(comment.startOffsetInParent)
+        val commentLineIndex = document.getLineNumber(comment.startOffset)
 
         if (commentLineIndex < 1) {
             log.debug("Comment found at line $commentLineIndex but there is no line above. So skipping further checking")

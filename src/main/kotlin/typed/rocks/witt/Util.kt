@@ -24,7 +24,7 @@ val COMMENT_ATTRIBUTE = TextAttributes().also {
 
 
 fun String.trimmedText(maxCharacters: Int): String {
-    val singleSpaces = this.replace(Regex("\\n"), " ").replace("\\{( {2,})".toRegex(), "\\{ ")
+    val singleSpaces = this.replace(Regex("\\n"), " ").replace("\\{( {2,})".toRegex(), "\\{ ").replace(";\\s+([A-Za-z].*)".toRegex(), ";  $1")
     return if (maxCharacters > singleSpaces.length) singleSpaces else singleSpaces.substring(
         0, maxCharacters - 3
     ) + "..."

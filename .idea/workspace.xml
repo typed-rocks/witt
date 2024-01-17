@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="added tests and fixed problems with the initial loading">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/PsiUtils.kt" afterDir="false" />
+    <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="small refactorings">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/PsiUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/PsiUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittCollector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittCollector.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/WittTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/WittTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TrimTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TrimTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/testproject/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testproject/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,38 +120,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build inlayhinting.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Run Plugin.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.TrimTest.regexTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.TrimTest.run.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WittTest.t.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WittTest.test the file.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WittTest.theTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.inlayhinting [buildPlugin].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.inlayhinting [clean test].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.inlayhinting [setupDependencies].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/wrz/IdeaProjects/inlayhinting/src/test/resources/testproject&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/wrz/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build inlayhinting.executor": "Run",
+    "Gradle.Run Plugin.executor": "Run",
+    "Gradle.TrimTest.regexTest.executor": "Run",
+    "Gradle.TrimTest.run.executor": "Run",
+    "Gradle.WittTest.executor": "Run",
+    "Gradle.WittTest.t.executor": "Run",
+    "Gradle.WittTest.test the file.executor": "Run",
+    "Gradle.WittTest.theTest.executor": "Run",
+    "Gradle.inlayhinting [buildPlugin].executor": "Run",
+    "Gradle.inlayhinting [build].executor": "Run",
+    "Gradle.inlayhinting [clean test].executor": "Run",
+    "Gradle.inlayhinting [setupDependencies].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/wrz/IdeaProjects/inlayhinting/src/test/resources/testproject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources/testproject" />
@@ -168,31 +173,7 @@
       <command value="gradle clean test" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.WittTest.test the file">
-    <configuration name="TrimTest.regexTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;TrimTest.regexTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.inlayhinting [buildPlugin]">
     <configuration name="TrimTest.run" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -207,6 +188,30 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;TrimTest.run&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WittTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;WittTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -241,43 +246,40 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WittTest.theTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="inlayhinting [buildPlugin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;WittTest.theTest&quot;" />
+            <option value="buildPlugin" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="inlayhinting [clean test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="inlayhinting [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
-            <option value="test" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -290,26 +292,26 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.Run Plugin" />
-      <item itemvalue="Gradle.TrimTest.regexTest" />
+      <item itemvalue="Gradle.WittTest" />
+      <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
+      <item itemvalue="Gradle.inlayhinting [build]" />
       <item itemvalue="Gradle.TrimTest.run" />
       <item itemvalue="Gradle.WittTest.test the file" />
-      <item itemvalue="Gradle.WittTest.theTest" />
-      <item itemvalue="Gradle.inlayhinting [clean test]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.WittTest.test the file" />
-        <item itemvalue="Gradle.inlayhinting [clean test]" />
-        <item itemvalue="Gradle.TrimTest.regexTest" />
-        <item itemvalue="Gradle.WittTest.theTest" />
+        <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
         <item itemvalue="Gradle.TrimTest.run" />
+        <item itemvalue="Gradle.WittTest.test the file" />
+        <item itemvalue="Gradle.WittTest" />
+        <item itemvalue="Gradle.inlayhinting [build]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.9-temurin-17.0.9-3183f394aec4-9e320d02" />
+        <option value="jdk-17.0.9-temurin-17.0.9-4caba194b151-c4115d96" />
       </set>
     </attachedChunks>
   </component>
@@ -335,7 +337,10 @@
       <workItem from="1702581389734" duration="6732000" />
       <workItem from="1702588710365" duration="8122000" />
       <workItem from="1702720685289" duration="28450000" />
-      <workItem from="1702821989265" duration="60000" />
+      <workItem from="1702821989265" duration="9623000" />
+      <workItem from="1705095337193" duration="472000" />
+      <workItem from="1705095815015" duration="2342000" />
+      <workItem from="1705513978933" duration="4321000" />
     </task>
     <task id="LOCAL-00001" summary="new icon">
       <option name="closed" value="true" />
@@ -393,7 +398,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702819933688</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="small refactorings">
+      <option name="closed" value="true" />
+      <created>1702822934814</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702822934814</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +442,8 @@
     <MESSAGE value="added much more type infos" />
     <MESSAGE value="new icons" />
     <MESSAGE value="added tests and fixed problems with the initial loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests and fixed problems with the initial loading" />
+    <MESSAGE value="small refactorings" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactorings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -471,6 +485,11 @@
           <url>file://$PROJECT_DIR$/src/test/kotlin/InlayHintsProviderTestCase.kt</url>
           <line>66</line>
           <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt</url>
+          <line>27</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

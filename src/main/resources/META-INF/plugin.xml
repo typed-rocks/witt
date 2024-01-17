@@ -32,10 +32,9 @@
 
     <change-notes>
         <![CDATA[
-        <p>1.0.3</p>
+        <p>1.0.4</p>
         <ul>
-            <li>Fix issue #2 invalid revision range</li>
-            <li>Fix issue #5 show error/info notifications</li>
+            <li>Fixed issue where the resolution of the types was not available if the type was not at toplevel</li>
         </ul>
     ]]>
     </change-notes>

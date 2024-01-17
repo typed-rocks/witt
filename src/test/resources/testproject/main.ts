@@ -10,6 +10,12 @@ type TooLong = "ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCD
 type HelloJetbrains = Hello | string | FromOther;
 //    ^?/*<# type HelloJetbrains = string | number | FromOther #>*/
 
+function hello() {
+    const test = {a: 'hello', b: 2};
+    //    ^?/*<# const test: { a: string;  b: number; } #>*/
+
+}
+
 //
 const fun = () => 'Hi';
 //    ^?/*<# const fun: () => string #>*/
