@@ -32,6 +32,12 @@
 
     <change-notes>
         <![CDATA[
+        <p>1.0.5</p>
+        <ul>
+            <li>Added compatibility with IDE builds up to 242.*</li>
+            <li>Improved plugin stability</li>
+        </ul>
+
         <p>1.0.4</p>
         <ul>
             <li>Fixed issue where the resolution of the types was not available if the type was not at toplevel</li>
