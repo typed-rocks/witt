@@ -8,7 +8,7 @@ import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementVisitor
-import com.intellij.refactoring.suggested.startOffset
+import com.intellij.psi.util.startOffset
 
 class WittVisitor(private val psiFile: PsiFile, private val document: Document) : PsiRecursiveElementVisitor() {
     val result: MutableSet<Pair<PsiComment, PsiElement>> = mutableSetOf()

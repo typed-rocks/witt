@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="957f3496-d468-4ab7-a26a-44ea10f511d2" name="Changes" comment="small refactorings">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/vue-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/PsiUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/PsiUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/TypescriptServiceUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/TypescriptServiceUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittCollector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittCollector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittInlayHintsProvider.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/WittVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/TrimTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/TrimTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testproject/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testproject/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,28 +43,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="witt" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="witt" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="witt" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="witt" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="intellij" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="witt" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -88,14 +67,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;chwoerz&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/typed-rocks/witt.git&quot;,
+    &quot;accountId&quot;: &quot;ae554438-880d-4b23-bce3-02b10613cf57&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/app-client.jar!/com/intellij/codeInsight/hints/InlayHintsSink.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/product.jar!/com/intellij/platform/lsp/api/LspServerManager.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/util-8.jar!/com/intellij/psi/PsiElementVisitor.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/util-8.jar!/kotlin/text/CharsKt.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/lib/util-8.jar!/org/apache/commons/lang3/time/StopWatch.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/plugins/javascript-impl/lib/javascript-impl.jar!/com/intellij/lang/javascript/service/JSLanguageService.class" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIU/2023.3/a00d2e3948540d904d1528de43972ac3ecd7a101/ideaIU-2023.3/plugins/javascript-impl/lib/javascript-impl.jar!/com/intellij/lang/typescript/compiler/TypeScriptService.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.intellij.platform/intellij-platform-gradle-plugin/2.0.0/9908c499c90f1a19e388e696e878453e9e691cb4/intellij-platform-gradle-plugin-2.0.0.jar!/org/jetbrains/intellij/platform/gradle/extensions/IntelliJPlatformDependenciesExtension.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/lib/app-client.jar!/com/intellij/codeInsight/hints/CollectorWithSettings.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/lib/app-client.jar!/com/intellij/codeInsight/hints/InlayHintsCollector.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/lib/app-client.jar!/com/intellij/codeInsight/hints/InlayHintsSink.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/lib/app-client.jar!/com/intellij/concurrency/ApplierCompleter.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/lib/util-8.jar!/com/intellij/openapi/editor/Document.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/plugins/javascript-plugin/lib/javascript-plugin.jar!/com/intellij/lang/javascript/integration/JSAnnotationError.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/plugins/javascript-plugin/lib/javascript-plugin.jar!/com/intellij/lang/javascript/service/JSLanguageService.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/transforms-3/d596997adbacc7e6a05537da267fe05f/transformed/ideaIU-242.20224.159-aarch64/plugins/javascript-plugin/lib/javascript-plugin.jar!/com/intellij/lang/typescript/compiler/languageService/TypeScriptServerServiceImpl.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/temurin-17.0.9/Contents/Home/lib/src.zip!/java.base/java/util/concurrent/Future.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
@@ -120,41 +113,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build inlayhinting.executor": "Run",
-    "Gradle.Run Plugin.executor": "Run",
-    "Gradle.TrimTest.regexTest.executor": "Run",
-    "Gradle.TrimTest.run.executor": "Run",
-    "Gradle.WittTest.executor": "Run",
-    "Gradle.WittTest.t.executor": "Run",
-    "Gradle.WittTest.test the file.executor": "Run",
-    "Gradle.WittTest.theTest.executor": "Run",
-    "Gradle.inlayhinting [buildPlugin].executor": "Run",
-    "Gradle.inlayhinting [build].executor": "Run",
-    "Gradle.inlayhinting [clean test].executor": "Run",
-    "Gradle.inlayhinting [setupDependencies].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "full.screen.before.presentation.mode": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/wrz/IdeaProjects/inlayhinting/src/test/resources/testproject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build inlayhinting.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download IntelliJ Platform sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Run Plugin.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TrimTest.regexTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TrimTest.run.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.WittTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.WittTest.t.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.WittTest.test the file.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.WittTest.theTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.inlayhinting [buildPlugin].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.inlayhinting [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.inlayhinting [clean test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.inlayhinting [setupDependencies].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/wrz/IdeaProjects/inlayhinting/src/test/resources/testproject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/wrz/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources/testproject" />
@@ -173,7 +169,7 @@
       <command value="gradle clean test" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.inlayhinting [buildPlugin]">
+  <component name="RunManager" selected="Gradle.Run Plugin">
     <configuration name="TrimTest.run" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -292,26 +288,27 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.Run Plugin" />
+      <item itemvalue="Gradle.TrimTest.run" />
       <item itemvalue="Gradle.WittTest" />
+      <item itemvalue="Gradle.WittTest.test the file" />
       <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
       <item itemvalue="Gradle.inlayhinting [build]" />
-      <item itemvalue="Gradle.TrimTest.run" />
-      <item itemvalue="Gradle.WittTest.test the file" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.inlayhinting [buildPlugin]" />
-        <item itemvalue="Gradle.TrimTest.run" />
+        <item itemvalue="Gradle.inlayhinting [build]" />
         <item itemvalue="Gradle.WittTest.test the file" />
         <item itemvalue="Gradle.WittTest" />
-        <item itemvalue="Gradle.inlayhinting [build]" />
+        <item itemvalue="Gradle.TrimTest.run" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.9-temurin-17.0.9-4caba194b151-c4115d96" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
       </set>
     </attachedChunks>
   </component>
@@ -341,6 +338,19 @@
       <workItem from="1705095337193" duration="472000" />
       <workItem from="1705095815015" duration="2342000" />
       <workItem from="1705513978933" duration="4321000" />
+      <workItem from="1720624822208" duration="855000" />
+      <workItem from="1722595431929" duration="3868000" />
+      <workItem from="1730704309683" duration="2354000" />
+      <workItem from="1730706684982" duration="114000" />
+      <workItem from="1730718625282" duration="4626000" />
+      <workItem from="1730733890397" duration="22000" />
+      <workItem from="1730733917002" duration="3000" />
+      <workItem from="1730733927570" duration="2293000" />
+      <workItem from="1730736275957" duration="862000" />
+      <workItem from="1733912502533" duration="243000" />
+      <workItem from="1733912962175" duration="337000" />
+      <workItem from="1733913547121" duration="1707000" />
+      <workItem from="1734434028968" duration="117000" />
     </task>
     <task id="LOCAL-00001" summary="new icon">
       <option name="closed" value="true" />
@@ -485,11 +495,6 @@
           <url>file://$PROJECT_DIR$/src/test/kotlin/InlayHintsProviderTestCase.kt</url>
           <line>66</line>
           <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/typed/rocks/witt/Util.kt</url>
-          <line>27</line>
-          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

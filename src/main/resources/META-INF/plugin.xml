@@ -21,6 +21,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.ultimate</depends>
+    <depends optional="true" config-file="vue-config.xml">org.jetbrains.plugins.vue</depends>
     <depends>JavaScript</depends>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -32,6 +33,22 @@
 
     <change-notes>
         <![CDATA[
+        <p>1.0.8</p>
+        <ul>
+            <li>IDE 2024.3 supported</li>
+        </ul>
+        <p>1.0.7</p>
+        <ul>
+            <li>Added initial Vue.js support</li>
+        </ul>
+        <p>1.0.6</p>
+        <ul>
+            <li>Bugfixes</li>
+        </ul>
+        <p>1.0.5</p>
+        <ul>
+            <li>Disabled Highlighting of the ^? because it caused some errors because of the plugin sdk</li>
+        </ul>
         <p>1.0.4</p>
         <ul>
             <li>Fixed issue where the resolution of the types was not available if the type was not at toplevel</li>

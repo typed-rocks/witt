@@ -1,81 +1,85 @@
 package typed.rocks.witt
 
-import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
+import com.intellij.codeInsight.daemon.impl.DaemonCodeAnalyzerImpl
+import com.intellij.codeInsight.daemon.impl.HighlightInfo
+import com.intellij.codeInsight.daemon.impl.InlayHintsPassFactoryInternal
 import com.intellij.codeInsight.hints.FactoryInlayHintsCollector
+import com.intellij.codeInsight.hints.InlayHintsProviderFactory
 import com.intellij.codeInsight.hints.InlayHintsSink
 import com.intellij.codeInsight.hints.presentation.InlayPresentation
 import com.intellij.codeInsight.hints.presentation.PresentationFactory
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.lang.javascript.integration.JSAnnotationError
 import com.intellij.lang.javascript.psi.ecma6.TypeScriptTypeAlias
+import com.intellij.lang.typescript.compiler.InlayHintsPreferences
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.editor.markup.RangeHighlighter
+import com.intellij.openapi.util.TextRange
 import com.intellij.pom.Navigatable
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.refactoring.suggested.endOffset
+import com.intellij.psi.util.endOffset
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 data class Inserter(val called: String, val start: Int, val end: Int)
 
 @Suppress("UnstableApiUsage")
 class WittCollector(
-    private val psiFile: PsiFile,
-    private val editor: Editor,
-    val rangeHighlighter: MutableList<RangeHighlighter>
+  private val psiFile: PsiFile,
+  private val editor: Editor
 ) : FactoryInlayHintsCollector(editor) {
 
-    private val virtualFile = psiFile.virtualFile
-    private val document = editor.document
-    private val tss = psiFile.getTs()
-    private val tsc = psiFile.getTsc()
-    private val alreadyDone = mutableSetOf<PsiComment>()
+  private val virtualFile = psiFile.virtualFile
+  private val document = editor.document
+  private val tss = psiFile.getTs()
+  private val tsc = psiFile.getTsc()
+  private val alreadyDone = mutableSetOf<PsiComment>()
 
-    private var first = true
+  private var first = true
 
-    override fun collect(element: PsiElement, editor: Editor, sink: InlayHintsSink): Boolean {
+  override fun collect(element: PsiElement, editor: Editor, sink: InlayHintsSink): Boolean {
 
-        // we do the recursive call ourselves
-        if (!first) return false
-        first = false
+    // we do the recursive call ourselves
+    if (!first) return false
+    first = false
 
-        val result = retryOn({ collectInlays() }, { it.commentToType.all { el -> el.second == null } })
-        addInfoToSink(result, editor, sink)
-        return false
-    }
+    val result = retryOn({ collectInlays() }, { it.commentToType.all { el -> el.second == null } })
+    addInfoToSink(result, editor, sink)
+    return false
+  }
 
-    private fun <T> retryOn(fn: () -> T, whenToRetry: (T) -> Boolean): T {
-        val res = fn()
-        return if (whenToRetry(res)) {
-            return fn()
-        } else res
+  private fun <T> retryOn(fn: () -> T, whenToRetry: (T) -> Boolean): T {
+    val res = fn()
+    return if (whenToRetry(res)) {
+      return fn()
+    } else res
 
-    }
+  }
 
-    private fun addInfoToSink(
-        result: VisitorResponse,
-        editor: Editor,
-        sink: InlayHintsSink
-    ) {
-        rangeHighlighter.forEach { editor.markupModel.removeHighlighter(it) }
-        result.commentToType.forEach { (comment, type) ->
-            val response = type?.displayString
+  private fun addInfoToSink(
+    result: VisitorResponse,
+    editor: Editor,
+    sink: InlayHintsSink
+  ) {
+    result.commentToType.forEach { (comment, type) ->
+      val response = type?.displayString
 
-            if (!alreadyDone.contains(comment)) {
-                val err = result.errorList?.findErrorAboveComment(editor, comment)
-                val errDescription = err?.description?.trimmedText(editor.getCharacterMax())
-                val firstFound = errDescription ?: response
-                firstFound?.let {
-                    sink.addTypeComment(firstFound, comment, result.types)
-                    alreadyDone.add(comment)
-                    rangeHighlighter.add(editor.addHighlight(comment))
-                }
-            }
+      if (!alreadyDone.contains(comment)) {
+        val err = result.errorList?.findErrorAboveComment(editor, comment)
+        val errDescription = err?.description?.trimmedText(editor.getCharacterMax())
+        val firstFound = errDescription ?: response
+        firstFound?.let {
+          sink.addTypeComment(firstFound, comment, result.types)
+          alreadyDone.add(comment)
         }
+      }
     }
+
+
+  }
+
 
     private fun collectInlays(): VisitorResponse {
         val wittVisitor = WittVisitor(psiFile, document)
@@ -119,39 +123,39 @@ class WittCollector(
         )
     }
 
-    private val String.inlayText: InlayPresentation
-        get() = factory.text(this)
+  private val String.inlayText: InlayPresentation
+    get() = factory.text(this)
 
-    private fun String.createRefs(typeMap: TypeNameToAlias) = this.split(" ").map {
-        val trimmed = it.trim()
-        val end = trimmed.lastOrNull()?.toString() ?: ""
-        val firstIsChar = trimmed.firstOrNull()?.isLetter() ?: false
-        val sequenced = if (firstIsChar) trimmed.toRefSequence(end, typeMap) else it.inlayText
-        factory.seq(" ".inlayText, sequenced)
+  private fun String.createRefs(typeMap: TypeNameToAlias) = this.split(" ").map {
+    val trimmed = it.trim()
+    val end = trimmed.lastOrNull()?.toString() ?: ""
+    val firstIsChar = trimmed.firstOrNull()?.isLetter() ?: false
+    val sequenced = if (firstIsChar) trimmed.toRefSequence(end, typeMap) else it.inlayText
+    factory.seq(" ".inlayText, sequenced)
+  }
+
+  private fun String.toRefSequence(
+    end: String, typeMap: TypeNameToAlias
+  ): InlayPresentation {
+    val ends = listOf(";", ")")
+    val closing = ends.find { it == end } ?: ""
+    val removed = this.removeSuffix(closing)
+    val ref = createReferenceInlay(removed, typeMap)
+    return factory.seq(ref, closing.inlayText)
+  }
+
+
+  private fun createReferenceInlay(currentTypeElement: String, typeMapping: TypeNameToAlias): InlayPresentation {
+    val navigationElement = typeMapping[currentTypeElement]?.navigationElement
+    val inlayText = currentTypeElement.inlayText
+    return if (navigationElement is Navigatable && navigationElement.canNavigate()) {
+      factory.referenceOnHover(inlayText) { _, _ ->
+        navigationElement.navigate(true)
+      }
+    } else {
+      inlayText
     }
-
-    private fun String.toRefSequence(
-        end: String, typeMap: TypeNameToAlias
-    ): InlayPresentation {
-        val ends = listOf(";", ")")
-        val closing = ends.find { it == end } ?: ""
-        val removed = this.removeSuffix(closing)
-        val ref = createReferenceInlay(removed, typeMap)
-        return factory.seq(ref, closing.inlayText)
-    }
-
-
-    private fun createReferenceInlay(currentTypeElement: String, typeMapping: TypeNameToAlias): InlayPresentation {
-        val navigationElement = typeMapping[currentTypeElement]?.navigationElement
-        val inlayText = currentTypeElement.inlayText
-        return if (navigationElement is Navigatable && navigationElement.canNavigate()) {
-            factory.referenceOnHover(inlayText) { _, _ ->
-                navigationElement.navigate(true)
-            }
-        } else {
-            inlayText
-        }
-    }
+  }
 }
 
 @Suppress("UnstableApiUsage")

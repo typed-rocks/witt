@@ -1,7 +1,6 @@
 package typed.rocks.witt
 
-import com.intellij.lang.javascript.TypeScriptFileType
-import com.intellij.lang.javascript.TypeScriptJSXFileType
+
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.colors.EditorFontType
@@ -11,8 +10,8 @@ import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+import com.intellij.psi.util.endOffset
+import com.intellij.psi.util.startOffset
 
 fun PsiElement.getElementAboveComment(
     document: Document, comment: PsiComment, commentLineIndex: Int
@@ -45,4 +44,4 @@ fun Editor.getCharacterMax(): Int {
     return if (UNDER_TEST) 100 else editorWidth / charWidth
 }
 
-fun PsiFile.isTsFile() = listOf("mts", "ts", "tsx").contains(this.fileType.defaultExtension)
+fun PsiFile.isTsFile() = listOf("mts", "ts", "tsx", "vue").contains(this.fileType.defaultExtension)

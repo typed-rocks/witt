@@ -33,7 +33,7 @@ fun String.trimmedText(maxCharacters: Int): String {
 fun <T> CompletableFuture<T?>.nullOnTimeout(ms: Long): CompletableFuture<T?> =
     this.completeOnTimeout(null, ms.orTest, MILLISECONDS)
 
-fun <T> CompletableFuture<List<T>?>.emptyOnTimeout(ms: Long): CompletableFuture<List<T>?> =
+fun <T> CompletableFuture<List<T>>.emptyOnTimeout(ms: Long): CompletableFuture<List<T>?> =
     this.completeOnTimeout(listOf(), ms.orTest, MILLISECONDS)
 
 val Long.orTest: Long

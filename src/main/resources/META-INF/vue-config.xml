@@ -1,0 +1,10 @@
+<idea-plugin>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+        <codeInsight.inlayProvider
+                implementationClass="typed.rocks.witt.WittInlayHintsProvider"
+                language="HTML"/>
+    </extensions>
+
+</idea-plugin>
