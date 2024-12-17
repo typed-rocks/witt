@@ -15,7 +15,7 @@
     <img src="images/black.png" alt="Logo" width=150>
   </a>
 
-<h3 align="center">Use `// ^?` in Jetbrains IDEs like in the TS Playground</h3>
+<h3 align="center">Use <code>// ^?</code> in Jetbrains IDEs like in the TS Playground</h3>
 <a href="https://plugins.jetbrains.com/plugin/23294">
 <img width=300 src="images/marketplace-link.png">
 </a>
